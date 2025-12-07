@@ -1,0 +1,404 @@
+/* Genel sayfa ayarları */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* ÜST BAR (MAGENTA) */
+.header {
+    background-color: #FF00FF; /* İstediğin renk */
+    color: white;
+    padding: 16px 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Üst başlıklar (Maltepe + Sistem adı) */
+.header-titles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.uni-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.app-title {
+    font-size: 18px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* MENÜ BUTONLARI */
+.menu {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Küçük ekranda alt satıra geçsin */
+}
+
+.menu-btn {
+    background: #ffffff;
+    color: #FF00FF;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border: 2px solid #ffffff;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.menu-btn:hover {
+    background: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* ANA İÇERİK ALANI */
+.main {
+    padding: 40px;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* Karşılama kartı */
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px 40px;
+    max-width: 520px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+}
+
+.card h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Mobil / küçük ekran uyumu */
+@media (max-width: 768px) {
+    .header {
+        padding: 16px 16px;
+    }
+
+    .main {
+        padding: 24px 16px;
+        justify-content: center;
+    }
+
+    .card {
+        width: 100%;
+        padding: 24px;
+    }
+
+    .uni-title {
+        font-size: 18px;
+    }
+
+    .app-title {
+        font-size: 16px;
+    }
+}
+/* INPUT ve SELECT BOX TASARIMI */
+.input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+/* BUTON TARZI (pembe temaya uygun) */
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    background: #FF00FF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.primary-btn:hover {
+    background: #cc00cc;
+}
+/* Students sayfası araç çubuğu */
+.students-toolbar {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    align-items: center;
+}
+
+/* Arama input'u */
+.inline-input {
+    flex: 1;
+}
+
+/* Küçük buton versiyonu */
+.small-btn {
+    width: auto;
+    padding: 10px 18px;
+    font-size: 14px;
+}
+
+/* Öğrenci tablosu */
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.students-table th,
+.students-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.students-table th {
+    background: #f9f9f9;
+    font-weight: 600;
+}
+
+/* Present / Absent badge'leri */
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.present {
+    background: rgba(34, 197, 94, 0.12);
+    color: #16a34a;
+}
+
+.status-badge.absent {
+    background: rgba(239, 68, 68, 0.12);
+    color: #dc2626;
+}
+/* Kamera sayfası grid yapısı */
+.camera-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Kamera kutusu */
+.camera-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+}
+
+.camera-box h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.camera-box p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+/* Kamera görüntü alanı */
+.camera-frame {
+    border-radius: 14px;
+    border: 2px dashed #ccc;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 16px;
+    background: #fafafa;
+}
+
+/* Butonlar (kamera altı) */
+.camera-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* İkincil buton stili */
+.secondary-btn {
+    padding: 12px 18px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #444;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.secondary-btn:hover {
+    background: #f3f3f3;
+}
+
+/* Sağ panel */
+.side-panel {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.panel-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Son algılanan öğrenci kutusu */
+.recognized-box {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.avatar-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #FF00FF, #fb7185);
+}
+
+.recognized-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.recognized-name {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.recognized-id {
+    font-size: 13px;
+    color: #666;
+}
+
+.recognized-tags {
+    display: flex;
+    gap: 6px;
+}
+
+/* Etiketler */
+.tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.tag-present {
+    background: rgba(34, 197, 94, 0.12);
+    color: #16a34a;
+}
+
+.tag-confidence {
+    background: rgba(59, 130, 246, 0.12);
+    color: #2563eb;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Full width buton */
+.full-width {
+    width: 100%;
+    margin-top: 6px;
+}
+
+/* Küçük ekran için düzen */
+@media (max-width: 900px) {
+    .camera-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Reports sayfası filtre alanı */
+.reports-filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* Özet kutuları */
+.reports-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 10px 0 20px;
+}
+
+.summary-box {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+}
+
+.summary-label {
+    font-size: 13px;
+    color: #666;
+}
+
+.summary-value {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* Küçük ekran uyumu */
+@media (max-width: 900px) {
+    .reports-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .reports-summary {
+        grid-template-columns: 1fr;
+    }
+}

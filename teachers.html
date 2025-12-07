@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers - Automated Attendance System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ÜST BAR -->
+    <div class="header">
+        <div class="header-titles">
+            <div class="uni-title">Maltepe Üniversitesi</div>
+            <div class="app-title">Automated Attendance System</div>
+        </div>
+
+        <div class="menu">
+    <a href="index.html" class="menu-btn">Dashboard</a>
+    <a href="start-session.html" class="menu-btn">Start Session</a>
+    <a href="students.html" class="menu-btn">Students</a>
+    <a href="teachers.html" class="menu-btn">Teachers</a>
+    <a href="courses.html" class="menu-btn">Courses</a>
+    <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
+    <a href="reports.html" class="menu-btn">Reports</a>
+</div>
+
+    </div>
+
+    <!-- ANA İÇERİK -->
+    <div class="main">
+        <div class="card" style="max-width: 900px;">
+            <h1>Teachers</h1>
+            <p>Register and manage instructors who will use the automated attendance system.</p>
+
+            <!-- ÖĞRETMEN KAYIT FORMU -->
+            <h2 style="font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Register New Teacher</h2>
+
+            <label for="teacher-id">Teacher ID</label>
+            <input id="teacher-id" class="input" placeholder="e.g. T-001">
+
+            <label for="teacher-name">Full Name</label>
+            <input id="teacher-name" class="input" placeholder="e.g. Dr. John Smith">
+
+            <label for="teacher-email">Email</label>
+            <input id="teacher-email" class="input" type="email" placeholder="e.g. john.smith@university.edu">
+
+            <label for="teacher-dept">Department</label>
+            <input id="teacher-dept" class="input" placeholder="e.g. Computer Engineering">
+
+            <button class="primary-btn">Save Teacher</button>
+
+            <!-- ÖĞRETMEN LİSTESİ TABLOSU -->
+            <h2 style="font-size: 18px; margin-top: 32px; margin-bottom: 10px;">Registered Teachers</h2>
+
+            <table class="students-table">
+                <thead>
+                    <tr>
+                        <th>Teacher ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Örnek sabit satırlar (UI gösterimi için) -->
+                    <tr>
+                        <td>T-001</td>
+                        <td>Dr. John Smith</td>
+                        <td>Computer Engineering</td>
+                        <td>john.smith@university.edu</td>
+                    </tr>
+                    <tr>
+                        <td>T-002</td>
+                        <td>Dr. Jane Doe</td>
+                        <td>Computer Engineering</td>
+                        <td>jane.doe@university.edu</td>
+                    </tr>
+                    <tr>
+                        <td>T-003</td>
+                        <td>Prof. Ahmet Yılmaz</td>
+                        <td>Mathematics</td>
+                        <td>ahmet.yilmaz@university.edu</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>

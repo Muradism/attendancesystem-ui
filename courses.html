@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Automated Attendance System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ÜST BAR -->
+    <div class="header">
+        <div class="header-titles">
+            <div class="uni-title">Maltepe Üniversitesi</div>
+            <div class="app-title">Automated Attendance System</div>
+        </div>
+
+        <div class="menu">
+            <a href="index.html" class="menu-btn">Dashboard</a>
+            <a href="start-session.html" class="menu-btn">Start Session</a>
+            <a href="students.html" class="menu-btn">Students</a>
+            <a href="teachers.html" class="menu-btn">Teachers</a>
+            <a href="courses.html" class="menu-btn">Courses</a>
+            <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
+            <a href="reports.html" class="menu-btn">Reports</a>
+        </div>
+    </div>
+
+    <!-- ANA İÇERİK -->
+    <div class="main">
+        <div class="card" style="max-width: 900px;">
+            <h1>Courses</h1>
+            <p>Create and manage course definitions for the attendance system.</p>
+
+            <!-- COURSE REGISTER FORM -->
+            <h2 style="font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Register New Course</h2>
+
+            <label for="course-code">Course Code</label>
+            <input id="course-code" class="input" placeholder="e.g. CSE101">
+
+            <label for="course-name">Course Name</label>
+            <input id="course-name" class="input" placeholder="e.g. Programming I">
+
+            <label for="course-credits">Credits</label>
+            <input id="course-credits" class="input" placeholder="e.g. 4">
+
+            <label for="assigned-teacher">Assigned Teacher (Optional)</label>
+            <select id="assigned-teacher" class="input">
+                <option value="">-- Select Teacher --</option>
+                <!-- UI için örnek öğretmen listesi -->
+                <option value="1">Dr. John Smith</option>
+                <option value="2">Dr. Jane Doe</option>
+                <option value="3">Prof. Ahmet Yılmaz</option>
+            </select>
+
+            <button class="primary-btn">Save Course</button>
+
+            <!-- COURSE LIST TABLE -->
+            <h2 style="font-size: 18px; margin-top: 32px; margin-bottom: 10px;">Registered Courses</h2>
+
+            <table class="students-table">
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Name</th>
+                        <th>Credits</th>
+                        <th>Teacher</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Örnek sabit satırlar (tüm projeyle uyumlu) -->
+                    <tr>
+                        <td>CSE101</td>
+                        <td>Programming I</td>
+                        <td>4</td>
+                        <td>Dr. John Smith</td>
+                    </tr>
+                    <tr>
+                        <td>CSE225</td>
+                        <td>Data Structures</td>
+                        <td>4</td>
+                        <td>Dr. Jane Doe</td>
+                    </tr>
+                    <tr>
+                        <td>CSE345</td>
+                        <td>Operating Systems</td>
+                        <td>3</td>
+                        <td>Prof. Ahmet Yılmaz</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

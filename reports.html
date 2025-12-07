@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Automated Attendance System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-titles">
+            <div class="uni-title">Maltepe Üniversitesi</div>
+            <div class="app-title">Automated Attendance System</div>
+        </div>
+
+        <div class="menu">
+            <a href="index.html" class="menu-btn">Dashboard</a>
+            <a href="start-session.html" class="menu-btn">Start Session</a>
+            <a href="students.html" class="menu-btn">Students</a>
+            <a href="teachers.html" class="menu-btn">Teachers</a>
+            <a href="courses.html" class="menu-btn">Courses</a>
+            <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
+            <a href="reports.html" class="menu-btn">Reports</a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="card">
+            <h1>Attendance Reports</h1>
+            <p>Select filters to view and export attendance summaries.</p>
+
+            <div class="reports-filters">
+                <select id="report-course-filter" class="input inline-input">
+                    <option value="">Choose course...</option>
+                    <option value="CSE101">CSE101 - Programming I</option>
+                    <option value="CSE225">CSE225 - Data Structures</option>
+                    <option value="CSE345">CSE345 - Operating Systems</option>
+                </select>
+
+                <select id="report-section-filter" class="input inline-input">
+                    <option value="">All sections</option>
+                    <option value="1">Section 1</option>
+                    <option value="2">Section 2</option>
+                </select>
+
+                <input id="report-start-date" type="date" class="input inline-input" />
+                <input id="report-end-date" type="date" class="input inline-input" />
+
+                <button id="report-apply-btn" class="primary-btn small-btn">Apply</button>
+            </div>
+
+            <div class="reports-summary">
+                <div class="summary-box">
+                    <div class="summary-label">Average Attendance</div>
+                    <div class="summary-value" id="report-avg-att">88%</div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-label">Total Sessions</div>
+                    <div class="summary-value" id="report-total-sessions">14</div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-label">Present / Absent</div>
+                    <div class="summary-value" id="report-present-absent">312 / 28</div>
+                </div>
+            </div>
+
+            <table class="students-table" id="reports-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Course</th>
+                        <th>Section</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Export</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025-11-20</td>
+                        <td>CSE101</td>
+                        <td>1</td>
+                        <td>28</td>
+                        <td>2</td>
+                        <td><button class="secondary-btn">Download PDF</button></td>
+                    </tr>
+                    <tr>
+                        <td>2025-11-19</td>
+                        <td>CSE225</td>
+                        <td>2</td>
+                        <td>26</td>
+                        <td>4</td>
+                        <td><button class="secondary-btn">Download PDF</button></td>
+                    </tr>
+                    <tr>
+                        <td>2025-11-18</td>
+                        <td>CSE345</td>
+                        <td>1</td>
+                        <td>24</td>
+                        <td>6</td>
+                        <td><button class="secondary-btn">Download PDF</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
