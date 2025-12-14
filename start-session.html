@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Session - Automated Attendance System</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Session - Automated Attendance System</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <div class="header">
-        <div class="header-titles">
-            <div class="uni-title">Maltepe Üniversitesi</div>
-            <div class="app-title">Automated Attendance System</div>
-        </div>
-
-        <div class="menu">
-    <a href="index.html" class="menu-btn">Dashboard</a>
-    <a href="start-session.html" class="menu-btn">Start Session</a>
-    <a href="students.html" class="menu-btn">Students</a>
-    <a href="teachers.html" class="menu-btn">Teachers</a>
-    <a href="courses.html" class="menu-btn">Courses</a>
-    <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
-    <a href="reports.html" class="menu-btn">Reports</a>
-</div>
-
+  <div class="header">
+    <div class="header-titles">
+      <div class="uni-title">Maltepe Üniversitesi</div>
+      <div class="app-title">Automated Attendance System</div>
     </div>
 
-    <div class="main">
-        <div class="card">
-            <h1>Start Attendance Session</h1>
-            <p>Select your course, section and click Start.</p>
-
-            <label>Course:</label>
-            <select class="input">
-                <option>Choose a course...</option>
-                <option>CSE101 - Programming I</option>
-                <option>CSE225 - Data Structures</option>
-                <option>CSE345 - Operating Systems</option>
-            </select>
-
-            <label>Section:</label>
-            <select class="input">
-                <option>Choose a section...</option>
-                <option>Section 1</option>
-                <option>Section 2</option>
-                <option>Section 3</option>
-            </select>
-
-            <button class="primary-btn" onclick="window.location='camera-session.html'">
-                Start Session
-            </button>
-        </div>
+    <div class="menu">
+      <a href="index.html" class="menu-btn">Dashboard</a>
+      <a href="start-session.html" class="menu-btn">Start Session</a>
+      <a href="students.html" class="menu-btn">Students</a>
+      <a href="teachers.html" class="menu-btn">Teachers</a>
+      <a href="courses.html" class="menu-btn">Courses</a>
+      <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
+      <a href="reports.html" class="menu-btn">Reports</a>
     </div>
+  </div>
 
+  <div class="main">
+    <div class="card">
+      <h1>Start Attendance Session</h1>
+      <p>Select your course, section and click Start.</p>
+
+      <label for="start-course">Course:</label>
+      <select id="start-course" class="input">
+        <option value="">Choose a course...</option>
+        <option value="CSE101">CSE101 - Programming I</option>
+        <option value="CSE225">CSE225 - Data Structures</option>
+        <option value="CSE345">CSE345 - Operating Systems</option>
+      </select>
+
+      <label for="start-section">Section:</label>
+      <select id="start-section" class="input">
+        <option value="">Choose a section...</option>
+        <option value="1">Section 1</option>
+        <option value="2">Section 2</option>
+        <option value="3">Section 3</option>
+      </select>
+
+      <button id="start-session-btn" class="primary-btn" type="button">
+        Start Session
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

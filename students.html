@@ -1,119 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students - Automated Attendance System</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Students - Automated Attendance System</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <div class="header">
-        <div class="header-titles">
-            <div class="uni-title">Maltepe Üniversitesi</div>
-            <div class="app-title">Automated Attendance System</div>
-        </div>
-
-        <!-- 7'li MENÜ (TÜM SAYFALARLA AYNI) -->
-        <div class="menu">
-            <a href="index.html" class="menu-btn">Dashboard</a>
-            <a href="start-session.html" class="menu-btn">Start Session</a>
-            <a href="students.html" class="menu-btn">Students</a>
-            <a href="teachers.html" class="menu-btn">Teachers</a>
-            <a href="courses.html" class="menu-btn">Courses</a>
-            <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
-            <a href="reports.html" class="menu-btn">Reports</a>
-        </div>
+  <div class="header">
+    <div class="header-titles">
+      <div class="uni-title">Maltepe Üniversitesi</div>
+      <div class="app-title">Automated Attendance System</div>
     </div>
 
-    <div class="main">
-        <div class="card">
-            <h1>Students</h1>
-            <p>Register new students and view the list of students in the system.</p>
-
-            <!-- 🆕 ÖĞRENCİ KAYIT FORMU -->
-            <h2 style="font-size: 18px; margin-top: 10px; margin-bottom: 8px;">Register New Student</h2>
-
-            <label for="student-no-input">Student No</label>
-            <input id="student-no-input" class="input" placeholder="e.g. 220706803">
-
-            <label for="student-name-input">Full Name</label>
-            <input id="student-name-input" class="input" placeholder="e.g. Murad İsmayilov">
-
-            <label for="student-program-input">Program</label>
-            <input id="student-program-input" class="input" placeholder="e.g. Software Engineering">
-
-            <label for="student-lastatt-input">Last Attendance (optional)</label>
-            <input id="student-lastatt-input" class="input" placeholder="e.g. 2025-11-20">
-
-            <label for="student-status-input">Status</label>
-            <select id="student-status-input" class="input">
-                <option value="present">Present</option>
-                <option value="absent">Absent</option>
-            </select>
-
-            <button id="add-student-btn" class="primary-btn" style="margin-top: 10px;">
-                Add Student
-            </button>
-
-            <!-- ARAMA ÇUBUĞU (ESKİ KISIM) -->
-            <h2 style="font-size: 18px; margin-top: 28px; margin-bottom: 8px;">Student List</h2>
-
-            <div class="students-toolbar">
-    <input
-        type="text"
-        id="student-search-input"
-        class="input inline-input"
-        placeholder="Search by name or student number..."
-    >
-    <button
-        id="student-search-btn"
-        class="primary-btn small-btn"
-    >
-        Search
-    </button>
-</div>
-
-
-            <!-- TABLO (BAŞLANGIÇTA ÖRNEK KAYITLAR) -->
-            <table class="students-table">
-                <thead>
-                    <tr>
-                        <th>Student No</th>
-                        <th>Name</th>
-                        <th>Program</th>
-                        <th>Last Attendance</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>220706803</td>
-                        <td>Murad İsmayilov</td>
-                        <td>Software Engineering</td>
-                        <td>2025-11-20</td>
-                        <td><span class="status-badge present">Present</span></td>
-                    </tr>
-                    <tr>
-                        <td>220700001</td>
-                        <td>Ali Yılmaz</td>
-                        <td>Computer Engineering</td>
-                        <td>2025-11-19</td>
-                        <td><span class="status-badge present">Present</span></td>
-                    </tr>
-                    <tr>
-                        <td>220700010</td>
-                        <td>Ayşe Kaya</td>
-                        <td>Computer Engineering</td>
-                        <td>2025-11-18</td>
-                        <td><span class="status-badge absent">Absent</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="menu">
+      <a href="index.html" class="menu-btn">Dashboard</a>
+      <a href="start-session.html" class="menu-btn">Start Session</a>
+      <a href="students.html" class="menu-btn">Students</a>
+      <a href="teachers.html" class="menu-btn">Teachers</a>
+      <a href="courses.html" class="menu-btn">Courses</a>
+      <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
+      <a href="reports.html" class="menu-btn">Reports</a>
     </div>
+  </div>
 
-    <!-- script.js TÜM SAYFALARDA OLMALI -->
-    <script src="script.js"></script>
+  <div class="main">
+    <div class="card">
+      <h1>Students</h1>
+      <p>Register new students and view the list of students in the system.</p>
+
+      <h2 style="font-size: 18px; margin-top: 10px;">Register New Student</h2>
+
+      <label for="student-no-input">Student No</label>
+      <input id="student-no-input" class="input" placeholder="e.g. 220706803" />
+
+      <label for="student-name-input">Full Name</label>
+      <input id="student-name-input" class="input" placeholder="e.g. Murad İsmayilov" />
+
+      <label for="student-program-input">Program</label>
+      <input id="student-program-input" class="input" placeholder="e.g. Software Engineering" />
+
+      <label for="student-lastatt-input">Last Attendance (optional)</label>
+      <input id="student-lastatt-input" class="input" placeholder="e.g. 2025-11-20" />
+
+      <label for="student-status-input">Status</label>
+      <select id="student-status-input" class="input">
+        <option value="present">Present</option>
+        <option value="absent">Absent</option>
+      </select>
+
+      <button id="add-student-btn" class="primary-btn" style="margin-top: 10px;">
+        Add Student
+      </button>
+
+      <h2 style="font-size: 18px; margin-top: 28px;">Student List</h2>
+
+      <div class="students-toolbar">
+        <input
+          type="text"
+          id="student-search-input"
+          class="input inline-input"
+          placeholder="Search by name or student number..."
+        />
+        <button
+          id="student-search-btn"
+          class="primary-btn small-btn"
+        >
+          Search
+        </button>
+      </div>
+
+      <table class="students-table">
+        <thead>
+          <tr>
+            <th>Student No</th>
+            <th>Name</th>
+            <th>Program</th>
+            <th>Last Attendance</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- JS (localStorage) burayı dolduracak -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

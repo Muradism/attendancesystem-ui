@@ -1,71 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera Session - Automated Attendance System</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camera Session - Automated Attendance System</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <div class="header">
-        <div class="header-titles">
-            <div class="uni-title">Maltepe Üniversitesi</div>
-            <div class="app-title">Automated Attendance System</div>
-        </div>
-
-        <div class="menu">
-            <a href="index.html" class="menu-btn">Dashboard</a>
-            <a href="start-session.html" class="menu-btn">Start Session</a>
-            <a href="students.html" class="menu-btn">Students</a>
-            <a href="reports.html" class="menu-btn">Reports</a>
-        </div>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-titles">
+      <div class="uni-title">Maltepe Üniversitesi</div>
+      <div class="app-title">Automated Attendance System</div>
     </div>
 
-    <div class="main">
-        <div class="camera-grid">
-
-            <!-- Sol taraf: Kamera görüntüsü -->
-            <div class="camera-box">
-                <h1>Live Attendance Session</h1>
-                <p>Selecting faces and marking students as present.</p>
-
-                <div class="camera-frame">
-                    Camera preview (classroom view)
-                </div>
-
-                <div class="camera-actions">
-                    <button class="primary-btn">Start Camera</button>
-                    <button class="secondary-btn">Pause</button>
-                    <button class="secondary-btn">End Session</button>
-                </div>
-            </div>
-
-            <!-- Sağ taraf: Algılanan öğrenci paneli -->
-            <div class="side-panel">
-                <div class="panel-title">Last Recognized Student</div>
-
-                <div class="recognized-box">
-                    <div class="avatar-circle"></div>
-                    <div class="recognized-info">
-                        <div class="recognized-name">Murad İsmayilov</div>
-                        <div class="recognized-id">Student No: 220706803</div>
-                        <div class="recognized-tags">
-                            <span class="tag tag-present">Recognized</span>
-                            <span class="tag tag-confidence">Confidence: 0.94</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="small-text">
-                    Face detected from classroom camera and matched with student records.
-                </div>
-
-                <button class="secondary-btn full-width">Open Manual Override</button>
-            </div>
-
-        </div>
+    <div class="menu">
+      <a href="index.html" class="menu-btn">Dashboard</a>
+      <a href="start-session.html" class="menu-btn">Start Session</a>
+      <a href="students.html" class="menu-btn">Students</a>
+      <a href="reports.html" class="menu-btn">Reports</a>
     </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="camera-grid">
+
+      <!-- CAMERA PANEL -->
+      <div class="camera-box">
+        <h1>Live Attendance Session</h1>
+        <p>
+          This screen simulates a live face-recognition attendance session.
+          Camera and recognition features are UI-based demonstrations.
+        </p>
+
+        <div class="camera-frame">
+          Camera preview (simulation)
+        </div>
+
+        <div class="camera-actions">
+          <button class="primary-btn" id="startCamBtn">Start Camera</button>
+          <button class="secondary-btn" id="pauseCamBtn">Pause</button>
+          <button class="secondary-btn" id="endSessionBtn">End Session</button>
+        </div>
+      </div>
+
+      <!-- RECOGNITION PANEL -->
+      <div class="side-panel">
+        <div class="panel-title">Last Recognized Student</div>
+
+        <div class="recognized-box" id="recognizedBox">
+          <div class="avatar-circle"></div>
+          <div class="recognized-info">
+            <div class="recognized-name">No student detected</div>
+            <div class="recognized-id">Waiting for recognition...</div>
+            <div class="recognized-tags">
+              <span class="tag tag-confidence">Confidence: —</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="small-text">
+          Student information will appear here once a face is recognized.
+        </div>
+
+        <button class="secondary-btn full-width">
+          Open Manual Override
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIMPLE UI SIMULATION -->
+  <script>
+    const startBtn = document.getElementById("startCamBtn");
+    const pauseBtn = document.getElementById("pauseCamBtn");
+    const endBtn   = document.getElementById("endSessionBtn");
+    const box      = document.getElementById("recognizedBox");
+
+    startBtn.addEventListener("click", () => {
+      box.querySelector(".recognized-name").textContent = "Murad İsmayilov";
+      box.querySelector(".recognized-id").textContent   = "Student No: 220706803";
+      box.querySelector(".tag-confidence").textContent  = "Confidence: 0.94";
+    });
+
+    pauseBtn.addEventListener("click", () => {
+      alert("Camera paused (UI simulation).");
+    });
+
+    endBtn.addEventListener("click", () => {
+      alert("Attendance session ended.");
+      window.location.href = "reports.html";
+    });
+  </script>
 
 </body>
 </html>
