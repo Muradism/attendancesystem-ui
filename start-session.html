@@ -1,57 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Start Session - Automated Attendance System</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Session</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="header">
+<header class="header">
     <div class="header-titles">
-      <div class="uni-title">Maltepe Üniversitesi</div>
-      <div class="app-title">Automated Attendance System</div>
+        <div class="uni-title">Maltepe Üniversitesi</div>
+        <div class="app-title">Automated Attendance System</div>
     </div>
+    <nav class="menu">
+        <a href="index.html" class="menu-btn">Dashboard</a>
+        <a href="start-session.html" class="menu-btn">Start Session</a>
+        <a href="students.html" class="menu-btn">Students</a>
+        <a href="teachers.html" class="menu-btn">Teachers</a>
+        <a href="courses.html" class="menu-btn">Courses</a>
+        <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
+        <a href="reports.html" class="menu-btn">Reports</a>
+    </nav>
+</header>
 
-    <div class="menu">
-      <a href="index.html" class="menu-btn">Dashboard</a>
-      <a href="start-session.html" class="menu-btn">Start Session</a>
-      <a href="students.html" class="menu-btn">Students</a>
-      <a href="teachers.html" class="menu-btn">Teachers</a>
-      <a href="courses.html" class="menu-btn">Courses</a>
-      <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
-      <a href="reports.html" class="menu-btn">Reports</a>
-    </div>
-  </div>
-
-  <div class="main">
+<main class="main">
     <div class="card">
-      <h1>Start Attendance Session</h1>
-      <p>Select your course, section and click Start.</p>
 
-      <label for="start-course">Course:</label>
-      <select id="start-course" class="input">
-        <option value="">Choose a course...</option>
-        <option value="CSE101">CSE101 - Programming I</option>
-        <option value="CSE225">CSE225 - Data Structures</option>
-        <option value="CSE345">CSE345 - Operating Systems</option>
-      </select>
+        <h1>Start Attendance Session</h1>
 
-      <label for="start-section">Section:</label>
-      <select id="start-section" class="input">
-        <option value="">Choose a section...</option>
-        <option value="1">Section 1</option>
-        <option value="2">Section 2</option>
-        <option value="3">Section 3</option>
-      </select>
+        <label for="session-course">Course</label>
+        <select id="session-course" class="input"></select>
 
-      <button id="start-session-btn" class="primary-btn" type="button">
-        Start Session
-      </button>
+        <label for="session-semester">Semester</label>
+        <input id="session-semester" class="input" placeholder="Fall 2025">
+
+        <button id="start-session-btn" class="primary-btn">
+            Start Session
+        </button>
+
     </div>
-  </div>
+</main>
 
-  <script src="script.js"></script>
+<script src="database.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>

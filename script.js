@@ -1,338 +1,204 @@
-console.log("Attendance UI loaded successfully!");
-
-const STORAGE_KEYS = {
-  teachers: "aas_teachers",
-  courses: "aas_courses",
-  students: "aas_students",
-  assignments: "aas_assignments",
-};
-
-function loadList(key, fallback = []) {
-  try {
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-function saveList(key, list) {
-  localStorage.setItem(key, JSON.stringify(list));
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  initTeachersPage();
-  initCoursesPage();
-  initAssignCoursesPage();
-  initStudentsPage();
-  initReportsPage();
-  initStartSessionPage();
-});
 
-/* ================= TEACHERS ================= */
+    /* ================= STUDENTS ================= */
+    const addStudentBtn = document.getElementById("add-student-btn");
+    if (addStudentBtn) {
+        renderStudents();
 
-function initTeachersPage() {
-  const idInput = document.getElementById("teacher-id");
-  const nameInput = document.getElementById("teacher-name");
-  const emailInput = document.getElementById("teacher-email");
-  const deptInput = document.getElementById("teacher-dept");
-  if (!idInput || !nameInput || !emailInput || !deptInput) return;
+        addStudentBtn.addEventListener("click", () => {
+            const no = document.getElementById("student-no").value.trim();
+            const name = document.getElementById("student-name").value.trim();
+            const program = document.getElementById("student-program").value.trim();
 
-  const card = idInput.closest(".card");
-  const saveBtn = card.querySelector(".primary-btn");
-  const tableBody = card.querySelector("tbody");
+            if (!no || !name) {
+                alert("Student No and Name are required");
+                return;
+            }
 
-  const teachers = loadList(STORAGE_KEYS.teachers, []);
+            Database.addStudent({ no, name, program });
+            renderStudents();
 
-  function render() {
-    tableBody.innerHTML = "";
-    teachers.forEach(t => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${t.id}</td>
-        <td>${t.name}</td>
-        <td>${t.dept || "-"}</td>
-        <td>${t.email || "-"}</td>
-      `;
-      tableBody.appendChild(tr);
-    });
-  }
-
-  render();
-
-  saveBtn.addEventListener("click", () => {
-    const id = idInput.value.trim();
-    const name = nameInput.value.trim();
-    if (!id || !name) return alert("Teacher ID and Name required");
-
-    teachers.push({
-      id,
-      name,
-      email: emailInput.value.trim(),
-      dept: deptInput.value.trim(),
-    });
-
-    saveList(STORAGE_KEYS.teachers, teachers);
-    render();
-
-    idInput.value = nameInput.value = emailInput.value = deptInput.value = "";
-  });
-}
-
-/* ================= COURSES ================= */
-
-function initCoursesPage() {
-  const codeInput = document.getElementById("course-code");
-  const nameInput = document.getElementById("course-name");
-  const creditsInput = document.getElementById("course-credits");
-  const teacherSelect = document.getElementById("assigned-teacher");
-  if (!codeInput || !nameInput || !creditsInput || !teacherSelect) return;
-
-  const card = codeInput.closest(".card");
-  const saveBtn = card.querySelector(".primary-btn");
-  const tableBody = card.querySelector("tbody");
-
-  const courses = loadList(STORAGE_KEYS.courses, []);
-
-  function render() {
-    tableBody.innerHTML = "";
-    courses.forEach(c => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${c.code}</td>
-        <td>${c.name}</td>
-        <td>${c.credits || "-"}</td>
-        <td>${c.teacher || "-"}</td>
-      `;
-      tableBody.appendChild(tr);
-    });
-  }
-
-  render();
-
-  saveBtn.addEventListener("click", () => {
-    const code = codeInput.value.trim();
-    const name = nameInput.value.trim();
-    if (!code || !name) return alert("Course code and name required");
-
-    const teacher =
-      teacherSelect.value === ""
-        ? "-"
-        : teacherSelect.options[teacherSelect.selectedIndex].textContent;
-
-    courses.push({
-      code,
-      name,
-      credits: creditsInput.value.trim(),
-      teacher,
-    });
-
-    saveList(STORAGE_KEYS.courses, courses);
-    render();
-
-    codeInput.value = nameInput.value = creditsInput.value = "";
-    teacherSelect.value = "";
-  });
-}
-
-/* ================= ASSIGN COURSES ================= */
-
-function initAssignCoursesPage() {
-  const studentSelect = document.getElementById("assign-student");
-  const courseSelect = document.getElementById("assign-course");
-  const semesterInput = document.getElementById("assign-semester");
-  if (!studentSelect || !courseSelect || !semesterInput) return;
-
-  const card = studentSelect.closest(".card");
-  const assignBtn = card.querySelector(".primary-btn");
-  const tableBody = card.querySelector("tbody");
-
-  const assignments = loadList(STORAGE_KEYS.assignments, []);
-
-  function render() {
-    tableBody.innerHTML = "";
-    assignments.forEach(a => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${a.studentId}</td>
-        <td>${a.studentName}</td>
-        <td>${a.courseCode}</td>
-        <td>${a.courseName}</td>
-        <td>${a.semester || "-"}</td>
-      `;
-      tableBody.appendChild(tr);
-    });
-  }
-
-  render();
-
-  assignBtn.addEventListener("click", () => {
-    if (!studentSelect.value || !courseSelect.value)
-      return alert("Select student and course");
-
-    const [studentId, studentName] =
-      studentSelect.options[studentSelect.selectedIndex].textContent.split(" - ");
-    const [courseCode, courseName] =
-      courseSelect.options[courseSelect.selectedIndex].textContent.split(" - ");
-
-    assignments.push({
-      studentId,
-      studentName,
-      courseCode,
-      courseName,
-      semester: semesterInput.value.trim(),
-    });
-
-    saveList(STORAGE_KEYS.assignments, assignments);
-    render();
-
-    studentSelect.value = courseSelect.value = semesterInput.value = "";
-  });
-}
-
-/* ================= STUDENTS ================= */
-
-function initStudentsPage() {
-  const noInput = document.getElementById("student-no-input");
-  const nameInput = document.getElementById("student-name-input");
-  const programInput = document.getElementById("student-program-input");
-  const lastAttInput = document.getElementById("student-lastatt-input");
-  const statusSelect = document.getElementById("student-status-input");
-  const addBtn = document.getElementById("add-student-btn");
-
-  const searchInput = document.getElementById("student-search-input");
-  const searchBtn = document.getElementById("student-search-btn");
-
-  if (!noInput || !nameInput || !programInput || !statusSelect || !addBtn) return;
-
-  const tableBody = document.querySelector(".students-table tbody");
-  const students = loadList(STORAGE_KEYS.students, []);
-
-  function render(filter = "") {
-    tableBody.innerHTML = "";
-    students
-      .filter(s =>
-        !filter ||
-        `${s.no} ${s.name} ${s.program}`.toLowerCase().includes(filter.toLowerCase())
-      )
-      .forEach(s => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${s.no}</td>
-          <td>${s.name}</td>
-          <td>${s.program || "-"}</td>
-          <td>${s.lastAtt || "-"}</td>
-          <td><span class="status-badge ${s.status}">${s.status}</span></td>
-        `;
-        tableBody.appendChild(tr);
-      });
-  }
-
-  render();
-
-  addBtn.addEventListener("click", () => {
-    if (!noInput.value || !nameInput.value)
-      return alert("Student no and name required");
-
-    students.push({
-      no: noInput.value.trim(),
-      name: nameInput.value.trim(),
-      program: programInput.value.trim(),
-      lastAtt: lastAttInput.value.trim(),
-      status: statusSelect.value,
-    });
-
-    saveList(STORAGE_KEYS.students, students);
-    render(searchInput?.value);
-
-    noInput.value = nameInput.value = programInput.value = lastAttInput.value = "";
-    statusSelect.value = "present";
-  });
-
-  if (searchBtn && searchInput) {
-    searchBtn.addEventListener("click", () => render(searchInput.value));
-    searchInput.addEventListener("keyup", e => {
-      if (e.key === "Enter") render(searchInput.value);
-    });
-  }
-}
-
-/* ================= REPORTS ================= */
-
-function initReportsPage() {
-  const courseSelect = document.getElementById("report-course-filter");
-  const sectionSelect = document.getElementById("report-section-filter");
-  const startInput = document.getElementById("report-start-date");
-  const endInput = document.getElementById("report-end-date");
-  const applyBtn = document.getElementById("report-apply-btn");
-  const table = document.getElementById("reports-table");
-
-  if (!courseSelect || !sectionSelect || !startInput || !endInput || !applyBtn || !table) return;
-
-  const tbody = table.querySelector("tbody");
-
-  const courses = loadList(STORAGE_KEYS.courses, []);
-  if (courses.length) {
-    courseSelect.innerHTML = `<option value="">Choose course...</option>`;
-    courses.forEach(c => {
-      const opt = document.createElement("option");
-      opt.value = c.code;
-      opt.textContent = `${c.code} - ${c.name}`;
-      courseSelect.appendChild(opt);
-    });
-  }
-
-  applyBtn.addEventListener("click", () => {
-    const rows = tbody.querySelectorAll("tr");
-    rows.forEach(row => {
-      const cells = row.querySelectorAll("td");
-      const date = new Date(cells[0].textContent.trim());
-      const course = cells[1].textContent.trim();
-      const section = cells[2].textContent.trim();
-
-      let visible = true;
-
-      if (courseSelect.value && course !== courseSelect.value) visible = false;
-      if (sectionSelect.value && section !== sectionSelect.value) visible = false;
-      if (startInput.value && date < new Date(startInput.value)) visible = false;
-      if (endInput.value && date > new Date(endInput.value)) visible = false;
-
-      row.style.display = visible ? "" : "none";
-    });
-  });
-}
-function initStartSessionPage() {
-  const courseSelect = document.getElementById("start-course");
-  const sectionSelect = document.getElementById("start-section");
-  const startBtn = document.getElementById("start-session-btn");
-  if (!courseSelect || !sectionSelect || !startBtn) return;
-
-  const courses = loadList(STORAGE_KEYS.courses, []);
-  if (courses.length) {
-    courseSelect.innerHTML = `<option value="">Choose a course...</option>`;
-    courses.forEach(c => {
-      const opt = document.createElement("option");
-      opt.value = c.code;
-      opt.textContent = `${c.code} - ${c.name}`;
-      courseSelect.appendChild(opt);
-    });
-  }
-
-  startBtn.addEventListener("click", () => {
-    if (!courseSelect.value || !sectionSelect.value) {
-      alert("Please select a course and a section.");
-      return;
+            document.getElementById("student-no").value = "";
+            document.getElementById("student-name").value = "";
+            document.getElementById("student-program").value = "";
+        });
     }
 
-    localStorage.setItem(
-      "aas_current_session",
-      JSON.stringify({
-        courseCode: courseSelect.value,
-        courseText: courseSelect.options[courseSelect.selectedIndex].textContent,
-        section: sectionSelect.value
-      })
-    );
+    function renderStudents() {
+        const tbody = document.getElementById("students-table-body");
+        if (!tbody) return;
 
-    window.location.href = "camera-session.html";
-  });
-}
+        tbody.innerHTML = "";
+        Database.getStudents().forEach(student => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${student.no}</td>
+                <td>${student.name}</td>
+                <td>${student.program || "-"}</td>
+                <td>
+                    <button onclick="deleteStudent('${student.no}')">
+                        Delete
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    window.deleteStudent = (no) => {
+        Database.deleteStudent(no);
+        renderStudents();
+    };
+
+    /* ================= TEACHERS ================= */
+    const addTeacherBtn = document.getElementById("add-teacher-btn");
+    if (addTeacherBtn) {
+        renderTeachers();
+
+        addTeacherBtn.addEventListener("click", () => {
+            const id = document.getElementById("teacher-id").value.trim();
+            const name = document.getElementById("teacher-name").value.trim();
+            const dept = document.getElementById("teacher-dept").value.trim();
+            const email = document.getElementById("teacher-email").value.trim();
+
+            if (!id || !name) {
+                alert("Teacher ID and Name are required");
+                return;
+            }
+
+            Database.addTeacher({ id, name, dept, email });
+            renderTeachers();
+        });
+    }
+
+    function renderTeachers() {
+        const tbody = document.getElementById("teachers-table-body");
+        if (!tbody) return;
+
+        tbody.innerHTML = "";
+        Database.getTeachers().forEach(t => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${t.id}</td>
+                <td>${t.name}</td>
+                <td>${t.dept || "-"}</td>
+                <td>${t.email || "-"}</td>
+                <td>
+                    <button onclick="deleteTeacher('${t.id}')">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    window.deleteTeacher = (id) => {
+        Database.deleteTeacher(id);
+        renderTeachers();
+    };
+
+    /* ================= COURSES ================= */
+    const addCourseBtn = document.getElementById("add-course-btn");
+    if (addCourseBtn) {
+        renderCourses();
+
+        addCourseBtn.addEventListener("click", () => {
+            const code = document.getElementById("course-code").value.trim();
+            const name = document.getElementById("course-name").value.trim();
+            const credits = document.getElementById("course-credits").value.trim();
+
+            if (!code || !name) {
+                alert("Course code and name required");
+                return;
+            }
+
+            Database.addCourse({ code, name, credits });
+            renderCourses();
+        });
+    }
+
+    function renderCourses() {
+        const tbody = document.getElementById("courses-table-body");
+        if (!tbody) return;
+
+        tbody.innerHTML = "";
+        Database.getCourses().forEach(c => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${c.code}</td>
+                <td>${c.name}</td>
+                <td>${c.credits || "-"}</td>
+                <td>
+                    <button onclick="deleteCourse('${c.code}')">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    window.deleteCourse = (code) => {
+        Database.deleteCourse(code);
+        renderCourses();
+    };
+
+    /* ================= ASSIGN COURSES ================= */
+    const assignBtn = document.getElementById("assign-course-btn");
+    if (assignBtn) {
+        fillAssignSelects();
+        renderEnrollments();
+
+        assignBtn.addEventListener("click", () => {
+            const student = document.getElementById("assign-student").value;
+            const course = document.getElementById("assign-course").value;
+            const semester = document.getElementById("assign-semester").value;
+
+            if (!student || !course) {
+                alert("Select student and course");
+                return;
+            }
+
+            Database.addEnrollment({ student, course, semester });
+            renderEnrollments();
+        });
+    }
+
+    function fillAssignSelects() {
+        const studentSel = document.getElementById("assign-student");
+        const courseSel = document.getElementById("assign-course");
+
+        if (!studentSel || !courseSel) return;
+
+        studentSel.innerHTML = "";
+        Database.getStudents().forEach(s => {
+            studentSel.innerHTML += `<option value="${s.no}">${s.no} - ${s.name}</option>`;
+        });
+
+        courseSel.innerHTML = "";
+        Database.getCourses().forEach(c => {
+            courseSel.innerHTML += `<option value="${c.code}">${c.code} - ${c.name}</option>`;
+        });
+    }
+
+    function renderEnrollments() {
+        const tbody = document.getElementById("assignments-table-body");
+        if (!tbody) return;
+
+        tbody.innerHTML = "";
+        Database.getEnrollments().forEach((e, i) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${e.student}</td>
+                <td>${e.course}</td>
+                <td>${e.semester || "-"}</td>
+                <td>
+                    <button onclick="deleteEnrollment(${i})">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    window.deleteEnrollment = (i) => {
+        Database.deleteEnrollment(i);
+        renderEnrollments();
+    };
+});

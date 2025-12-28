@@ -1,87 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assign Courses - Automated Attendance System</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Courses</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ÜST BAR -->
-  <div class="header">
+<header class="header">
     <div class="header-titles">
-      <div class="uni-title">Maltepe Üniversitesi</div>
-      <div class="app-title">Automated Attendance System</div>
+        <div class="uni-title">Maltepe Üniversitesi</div>
+        <div class="app-title">Automated Attendance System</div>
     </div>
+    <nav class="menu">
+        <a href="index.html" class="menu-btn">Dashboard</a>
+        <a href="start-session.html" class="menu-btn">Start Session</a>
+        <a href="students.html" class="menu-btn">Students</a>
+        <a href="teachers.html" class="menu-btn">Teachers</a>
+        <a href="courses.html" class="menu-btn">Courses</a>
+        <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
+        <a href="reports.html" class="menu-btn">Reports</a>
+    </nav>
+</header>
 
-    <div class="menu">
-      <a href="index.html" class="menu-btn">Dashboard</a>
-      <a href="start-session.html" class="menu-btn">Start Session</a>
-      <a href="students.html" class="menu-btn">Students</a>
-      <a href="teachers.html" class="menu-btn">Teachers</a>
-      <a href="courses.html" class="menu-btn">Courses</a>
-      <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
-      <a href="reports.html" class="menu-btn">Reports</a>
-    </div>
-  </div>
+<main class="main">
+    <div class="card">
 
-  <!-- ANA İÇERİK -->
-  <div class="main">
-    <div class="card" style="max-width: 900px;">
-      <h1>Assign Courses to Students</h1>
-      <p>
-        Use this screen to map students to the courses they will attend.
-        These assignments will be used later in the attendance sessions.
-      </p>
+        <h1>Assign Courses to Students</h1>
 
-      <h2 style="font-size: 18px; margin-top: 20px; margin-bottom: 10px;">
-        Create New Assignment
-      </h2>
+        <label for="assign-student">Student</label>
+        <select id="assign-student" class="input"></select>
 
-      <label for="assign-student">Student</label>
-      <select id="assign-student" class="input">
-        <option value="">-- Select Student --</option>
-        <option value="220706803">220706803 - Murad İsmayilov</option>
-        <option value="220700001">220700001 - Ali Yılmaz</option>
-        <option value="220700010">220700010 - Ayşe Kaya</option>
-      </select>
+        <label for="assign-course">Course</label>
+        <select id="assign-course" class="input"></select>
 
-      <label for="assign-course">Course</label>
-      <select id="assign-course" class="input">
-        <option value="">-- Select Course --</option>
-        <option value="CSE101">CSE101 - Programming I</option>
-        <option value="CSE225">CSE225 - Data Structures</option>
-        <option value="CSE345">CSE345 - Operating Systems</option>
-      </select>
+        <label for="assign-semester">Semester</label>
+        <input id="assign-semester" class="input" placeholder="Fall 2025">
 
-      <label for="assign-semester">Semester / Term</label>
-      <input id="assign-semester" class="input" placeholder="e.g. Fall 2025" />
+        <button id="assign-course-btn" class="primary-btn">
+            Assign Course
+        </button>
 
-      <button class="primary-btn" type="button">Assign Course</button>
+        <h2>Enrollments</h2>
 
-      <h2 style="font-size: 18px; margin-top: 32px; margin-bottom: 10px;">
-        Current Course Assignments
-      </h2>
-
-      <table class="students-table">
-        <thead>
-          <tr>
-            <th>Student ID</th>
-            <th>Student Name</th>
-            <th>Course Code</th>
-            <th>Course Name</th>
-            <th>Semester</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- JS (localStorage) burayı dolduracak -->
-        </tbody>
-      </table>
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Semester</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="assignments-table-body"></tbody>
+        </table>
 
     </div>
-  </div>
+</main>
 
-  <script src="script.js"></script>
+<script src="database.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>

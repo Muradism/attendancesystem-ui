@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Teachers - Automated Attendance System</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="header">
+<header class="header">
     <div class="header-titles">
-      <div class="uni-title">Maltepe Üniversitesi</div>
-      <div class="app-title">Automated Attendance System</div>
+        <div class="uni-title">Maltepe Üniversitesi</div>
+        <div class="app-title">Automated Attendance System</div>
     </div>
+    <nav class="menu">
+        <a href="index.html" class="menu-btn">Dashboard</a>
+        <a href="start-session.html" class="menu-btn">Start Session</a>
+        <a href="students.html" class="menu-btn">Students</a>
+        <a href="teachers.html" class="menu-btn">Teachers</a>
+        <a href="courses.html" class="menu-btn">Courses</a>
+        <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
+        <a href="reports.html" class="menu-btn">Reports</a>
+    </nav>
+</header>
 
-    <div class="menu">
-      <a href="index.html" class="menu-btn">Dashboard</a>
-      <a href="start-session.html" class="menu-btn">Start Session</a>
-      <a href="students.html" class="menu-btn">Students</a>
-      <a href="teachers.html" class="menu-btn">Teachers</a>
-      <a href="courses.html" class="menu-btn">Courses</a>
-      <a href="assign-courses.html" class="menu-btn">Assign Courses</a>
-      <a href="reports.html" class="menu-btn">Reports</a>
+<main class="main">
+    <div class="card">
+
+        <h1>Teachers</h1>
+
+        <label for="teacher-id">Teacher ID</label>
+        <input id="teacher-id" class="input">
+
+        <label for="teacher-name">Full Name</label>
+        <input id="teacher-name" class="input">
+
+        <label for="teacher-dept">Department</label>
+        <input id="teacher-dept" class="input">
+
+        <label for="teacher-email">Email</label>
+        <input id="teacher-email" class="input">
+
+        <button id="add-teacher-btn" class="primary-btn">
+            Add Teacher
+        </button>
+
+        <h2>Teacher List</h2>
+
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="teachers-table-body"></tbody>
+        </table>
+
     </div>
-  </div>
+</main>
 
-  <div class="main">
-    <div class="card" style="max-width: 900px;">
-      <h1>Teachers</h1>
-      <p>Register and manage instructors who will use the automated attendance system.</p>
+<script src="database.js"></script>
+<script src="script.js"></script>
 
-      <h2 style="font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Register New Teacher</h2>
-
-      <label for="teacher-id">Teacher ID</label>
-      <input id="teacher-id" class="input" placeholder="e.g. T-001" />
-
-      <label for="teacher-name">Full Name</label>
-      <input id="teacher-name" class="input" placeholder="e.g. Dr. John Smith" />
-
-      <label for="teacher-email">Email</label>
-      <input id="teacher-email" class="input" type="email" placeholder="e.g. john.smith@university.edu" />
-
-      <label for="teacher-dept">Department</label>
-      <input id="teacher-dept" class="input" placeholder="e.g. Computer Engineering" />
-
-      <button class="primary-btn" type="button">Save Teacher</button>
-
-      <h2 style="font-size: 18px; margin-top: 32px; margin-bottom: 10px;">Registered Teachers</h2>
-
-      <table class="students-table">
-        <thead>
-          <tr>
-            <th>Teacher ID</th>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- JS (localStorage) burayı dolduracak -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
